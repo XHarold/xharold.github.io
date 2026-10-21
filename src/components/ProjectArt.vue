@@ -1,0 +1,120 @@
+<script setup lang="ts">
+defineProps<{ kind: "graph" | "city" | "learning"; compact?: boolean }>();
+const nodes = [
+  [360, 208],
+  [238, 126],
+  [495, 112],
+  [534, 286],
+  [210, 286],
+  [367, 355],
+  [123, 181],
+  [596, 181],
+  [405, 64],
+  [135, 341],
+  [576, 370],
+  [282, 392],
+  [85, 95],
+  [630, 77],
+];
+const edges = [
+  [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [1, 6], [1, 8],
+  [2, 8], [2, 7], [3, 7], [3, 10], [4, 6], [4, 9], [4, 11],
+  [5, 11], [5, 10], [6, 12], [7, 13],
+];
+</script>
+
+<template>
+  <div class="project-art" :class="[`art-${kind}`, { compact }]" aria-label="项目概念示意封面">
+    <template v-if="kind === 'graph'">
+      <div class="art-topline">
+        <span>COURTGRAPH / SYSTEM EXPLORATION</span><span>FIG. 001</span>
+      </div>
+      <svg class="graph-art" viewBox="0 0 720 440" role="img" aria-label="连接中心事实与周边信息的节点图，视觉示意">
+        <g fill="none" stroke="currentColor">
+          <ellipse cx="360" cy="220" rx="250" ry="165" class="graph-orbit" />
+          <ellipse cx="360" cy="220" rx="175" ry="115" class="graph-orbit" />
+          <line
+            v-for="(edge, i) in edges"
+            :key="i"
+            :x1="nodes[edge[0]!]![0]"
+            :y1="nodes[edge[0]!]![1]"
+            :x2="nodes[edge[1]!]![0]"
+            :y2="nodes[edge[1]!]![1]"
+            class="graph-edge"
+          />
+        </g>
+        <g v-for="(node, i) in nodes" :key="i">
+          <circle :cx="node[0]" :cy="node[1]" :r="i === 0 ? 38 : i < 6 ? 18 : 6" :class="i === 0 ? 'graph-core' : 'graph-node'" />
+          <circle v-if="i === 0" :cx="node[0]" :cy="node[1]" r="49" fill="none" stroke="#97a5ff" opacity=".35" />
+        </g>
+        <g class="graph-text">
+          <text x="360" y="212" text-anchor="middle">FACT</text>
+          <text x="211" y="95">QUESTION</text>
+          <text x="474" y="78">EVIDENCE</text>
+          <text x="557" y="290">CONTEXT</text>
+          <text x="115" y="289">ENTITY</text>
+          <text x="340" y="394">REASONING</text>
+        </g>
+      </svg>
+      <div class="art-bottomline">
+        <span><i class="tiny-dot"></i> CONNECTING THE MISSING PIECES</span><span>概念示意 ↗</span>
+      </div>
+    </template>
+    <template v-else-if="kind === 'city'">
+      <div class="art-topline">
+        <span>CITY PULSE / URBAN OBSERVATORY</span><span>FIG. 002</span>
+      </div>
+      <svg class="city-art" viewBox="0 0 600 360" role="img" aria-label="城市路线与流动节点的示意图，不包含真实数据">
+        <g class="city-grid">
+          <path v-for="i in 12" :key="`v${i}`" :d="`M${i * 50},0 V360`" />
+          <path v-for="i in 8" :key="`h${i}`" :d="`M0,${i * 45} H600`" />
+        </g>
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M-20 270H130L220 180H330L420 90H620" stroke="#a5beae" stroke-width="18" />
+          <path d="M70 -20V75L175 180H330L430 280H620" stroke="#d5a66a" stroke-width="10" />
+          <path d="M-20 75H135L230 170V380" stroke="#97a8c5" stroke-width="8" />
+          <path d="M450 -20V120L355 215V380" stroke="#8caa94" stroke-width="8" />
+        </g>
+        <g fill="#f3f1e8" stroke="#355a48" stroke-width="3">
+          <circle cx="175" cy="180" r="8" />
+          <circle cx="230" cy="180" r="11" />
+          <circle cx="330" cy="180" r="12" />
+          <circle cx="420" cy="90" r="8" />
+          <circle cx="355" cy="215" r="8" />
+          <circle cx="430" cy="280" r="8" />
+        </g>
+        <circle cx="330" cy="180" r="35" fill="none" stroke="#355a48" opacity=".2" />
+        <g fill="#526b5b" font-family="monospace" font-size="10">
+          <text x="348" y="164">THE CITY IS ALIVE</text>
+          <text x="81" y="306">MOVEMENT → CONNECTION</text>
+        </g>
+      </svg>
+      <div class="art-bottomline">
+        <span>READING THE RHYTHM OF A CITY</span><span>概念示意 ↗</span>
+      </div>
+    </template>
+    <template v-else>
+      <div class="art-topline">
+        <span>IELTS AGENT / LEARNING COMPANION</span><span>FIG. 003</span>
+      </div>
+      <div class="learning-scene">
+        <div class="learning-circle"></div>
+        <div class="learning-card">
+          <div class="learning-card-head">
+            <span class="agent-symbol">✳</span><span>A little practice.<br /><strong>A little progress.</strong></span><span class="learning-dot"></span>
+          </div>
+          <div class="waveform" aria-hidden="true">
+            <i v-for="i in 35" :key="i" :style="{ height: `${12 + Math.abs(Math.sin(i * 1.7)) * 40}px` }"></i>
+          </div>
+          <div class="learning-card-foot">
+            <span>YOUR VOICE, YOUR PACE</span><span>↗</span>
+          </div>
+        </div>
+        <span class="floating-label">One conversation at a time.</span>
+      </div>
+      <div class="art-bottomline">
+        <span>A SPACE TO FIND YOUR VOICE</span><span>概念示意 ↗</span>
+      </div>
+    </template>
+  </div>
+</template>
