@@ -57,7 +57,10 @@ useHead({
           <dd>{{ entry.status || "待确认" }}</dd>
         </div>
       </dl>
-      <p v-else class="eyebrow">
+      <a v-if="entry.demo" :href="assetUrl(entry.demo)" class="button-primary detail-demo-cta"
+        >进入交互可视化 ↗</a
+      >
+      <p v-if="kind === 'note'" class="eyebrow">
         {{ entry.date }} / {{ entry.tags.join(" · ") }}
       </p>
     </header>
@@ -79,7 +82,10 @@ useHead({
       </aside>
       <div class="prose" v-html="entry.html"></div>
     </div>
-    <div v-if="entry.links?.length" class="detail-links">
+    <div v-if="entry.demo || entry.links?.length" class="detail-links">
+      <a v-if="entry.demo" :href="assetUrl(entry.demo)" class="button-primary"
+        >体验完整作品 ↗</a
+      >
       <a
         v-for="link in entry.links"
         :key="link.url"

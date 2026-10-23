@@ -13,10 +13,11 @@ export interface ContentEntry {
   placeholder: boolean;
   featured?: boolean;
   order: number;
-  art: "graph" | "city" | "learning";
+  art: "graph" | "metro" | "learning";
   date?: string;
   draft?: boolean;
   cover?: string;
+  demo?: string;
   links?: { label: string; url: string }[];
   html: string;
 }

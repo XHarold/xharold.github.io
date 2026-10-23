@@ -4,6 +4,7 @@ import {
   copyFileSync,
   readdirSync,
   existsSync,
+  mkdirSync,
 } from "node:fs";
 import { join } from "node:path";
 import { loadEnv } from "vite";
@@ -16,6 +17,15 @@ const isPreview = /name="robots"[^>]+content="noindex/.test(home);
 if (existsSync("dist/404/index.html"))
   copyFileSync("dist/404/index.html", "dist/404.html");
 writeFileSync("dist/.nojekyll", "");
+
+// Preserve bookmarked City Pulse URLs after the project is renamed.
+const oldProjectDir = "dist/work/city-pulse";
+const newProjectPath = `${base.replace(/\/$/, "")}/work/wiring-the-city/`;
+mkdirSync(oldProjectDir, { recursive: true });
+writeFileSync(
+  join(oldProjectDir, "index.html"),
+  `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url=${newProjectPath}"><title>Wiring the City — Fan Ju</title></head><body><main><h1>City Pulse 已更名为 Wiring the City</h1><p><a href="${newProjectPath}">查看新项目介绍</a></p></main></body></html>`,
+);
 
 function pages(dir = "dist") {
   return readdirSync(dir, { withFileTypes: true }).flatMap((item) => {

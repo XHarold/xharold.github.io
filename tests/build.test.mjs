@@ -20,7 +20,9 @@ test("all public routes have pre-rendered HTML with useful content", () => {
     "work/index.html",
     "lab/index.html",
     "work/courtgraph/index.html",
+    "work/wiring-the-city/index.html",
     "work/city-pulse/index.html",
+    "wiring-the-city/index.html",
     "work/ielts-agent/index.html",
     "404.html",
   ]) {
@@ -88,19 +90,34 @@ test("generated internal links and local assets resolve, including nested routes
     const html = readFileSync(file, "utf8");
     for (const [, url] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
       if (/^(?:https?:|mailto:|data:|#)/.test(url)) continue;
-      assert.ok(
-        url.startsWith(base),
-        `${file}: ${url} should respect deployment base ${base}`,
-      );
-      const relative = decodeURIComponent(
-        url.slice(base.length).split(/[?#]/)[0],
-      );
-      const target = join("dist", relative);
+      const standalone = file.replaceAll("\\", "/").includes("/wiring-the-city/");
+      assert.ok(standalone || url.startsWith(base), `${file}: ${url} should respect deployment base ${base}`);
+      const clean = decodeURIComponent(url.split(/[?#]/)[0]);
+      const target = standalone && !clean.startsWith(base)
+        ? join(file, "..", clean)
+        : join("dist", clean.slice(base.length));
       assert.ok(
         existsSync(target) || existsSync(join(target, "index.html")),
         `${file}: missing ${url}`,
       );
     }
+  }
+});
+
+test("Wiring the City replaces City Pulse and its interactive assets are published", () => {
+  const home = readFileSync("dist/index.html", "utf8");
+  const work = readFileSync("dist/work/index.html", "utf8");
+  const detail = readFileSync("dist/work/wiring-the-city/index.html", "utf8");
+  const demo = readFileSync("dist/wiring-the-city/index.html", "utf8");
+  const legacy = readFileSync("dist/work/city-pulse/index.html", "utf8");
+  assert.match(home, /Wiring the City/);
+  assert.match(work, /Wiring the City/);
+  assert.doesNotMatch(work, /City Pulse/);
+  assert.match(detail, /href="\/wiring-the-city\/"/);
+  assert.match(demo, /href="\.\.\/work\/wiring-the-city\/"/);
+  assert.match(legacy, /url=\/work\/wiring-the-city\//);
+  for (const asset of ["styles.css", "main.js", "data/cities.js", "data/diagrams.js", "assets/stamps/london-stamp.svg"]) {
+    assert.ok(existsSync(`dist/wiring-the-city/${asset}`), `missing visualization asset: ${asset}`);
   }
 });
 

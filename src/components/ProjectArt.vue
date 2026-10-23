@@ -1,5 +1,6 @@
 <script setup lang="ts">
-defineProps<{ kind: "graph" | "city" | "learning"; compact?: boolean }>();
+import { assetUrl } from "../lib/urls";
+defineProps<{ kind: "graph" | "metro" | "learning"; compact?: boolean }>();
 const nodes = [
   [360, 208],
   [238, 126],
@@ -24,7 +25,7 @@ const edges = [
 </script>
 
 <template>
-  <div class="project-art" :class="[`art-${kind}`, { compact }]" aria-label="项目概念示意封面">
+  <div class="project-art" :class="[`art-${kind}`, { compact }]" :aria-label="kind === 'metro' ? 'Wiring the City 项目封面' : '项目概念示意封面'">
     <template v-if="kind === 'graph'">
       <div class="art-topline">
         <span>COURTGRAPH / SYSTEM EXPLORATION</span><span>FIG. 001</span>
@@ -60,37 +61,21 @@ const edges = [
         <span><i class="tiny-dot"></i> CONNECTING THE MISSING PIECES</span><span>概念示意 ↗</span>
       </div>
     </template>
-    <template v-else-if="kind === 'city'">
+    <template v-else-if="kind === 'metro'">
       <div class="art-topline">
-        <span>CITY PULSE / URBAN OBSERVATORY</span><span>FIG. 002</span>
+        <span>WIRING THE CITY / URBAN RHYTHMS</span><span>FIG. 002</span>
       </div>
-      <svg class="city-art" viewBox="0 0 600 360" role="img" aria-label="城市路线与流动节点的示意图，不包含真实数据">
-        <g class="city-grid">
-          <path v-for="i in 12" :key="`v${i}`" :d="`M${i * 50},0 V360`" />
-          <path v-for="i in 8" :key="`h${i}`" :d="`M0,${i * 45} H600`" />
-        </g>
-        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M-20 270H130L220 180H330L420 90H620" stroke="#a5beae" stroke-width="18" />
-          <path d="M70 -20V75L175 180H330L430 280H620" stroke="#d5a66a" stroke-width="10" />
-          <path d="M-20 75H135L230 170V380" stroke="#97a8c5" stroke-width="8" />
-          <path d="M450 -20V120L355 215V380" stroke="#8caa94" stroke-width="8" />
-        </g>
-        <g fill="#f3f1e8" stroke="#355a48" stroke-width="3">
-          <circle cx="175" cy="180" r="8" />
-          <circle cx="230" cy="180" r="11" />
-          <circle cx="330" cy="180" r="12" />
-          <circle cx="420" cy="90" r="8" />
-          <circle cx="355" cy="215" r="8" />
-          <circle cx="430" cy="280" r="8" />
-        </g>
-        <circle cx="330" cy="180" r="35" fill="none" stroke="#355a48" opacity=".2" />
-        <g fill="#526b5b" font-family="monospace" font-size="10">
-          <text x="348" y="164">THE CITY IS ALIVE</text>
-          <text x="81" y="306">MOVEMENT → CONNECTION</text>
-        </g>
-      </svg>
+      <div class="metro-cover-copy">
+        <strong>Wiring<br />the City<span>.</span></strong>
+        <span>城市脉络<br />地铁线网与城市节律</span>
+      </div>
+      <div class="metro-cover-stamps" aria-hidden="true">
+        <img :src="assetUrl('wiring-the-city/assets/stamps/london-stamp.svg')" alt="" loading="lazy" />
+        <img :src="assetUrl('wiring-the-city/assets/stamps/shanghai-stamp.svg')" alt="" loading="lazy" />
+        <img :src="assetUrl('wiring-the-city/assets/stamps/seoul-stamp.svg')" alt="" loading="lazy" />
+      </div>
       <div class="art-bottomline">
-        <span>READING THE RHYTHM OF A CITY</span><span>概念示意 ↗</span>
+        <span>FIVE CITIES / ONE VISUAL STORY</span><span>交互作品 ↗</span>
       </div>
     </template>
     <template v-else>

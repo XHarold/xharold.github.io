@@ -1,0 +1,45 @@
+{
+  "shanghai": {
+    "nativeMinutes": 10,
+    "files": [
+      "city_hourly_profile.json",
+      "zone_hourly_tide.json",
+      "city_ten_minute_profile.json",
+      "zone_ten_minute_tide.json"
+    ]
+  },
+  "shenzhen": {
+    "nativeMinutes": 10,
+    "files": [
+      "city_hourly_profile.json",
+      "zone_hourly_tide.json",
+      "city_ten_minute_profile.json",
+      "zone_ten_minute_tide.json"
+    ]
+  },
+  "hangzhou": {
+    "nativeMinutes": 15,
+    "files": [
+      "city_hourly_profile.json",
+      "zone_hourly_tide.json",
+      "city_fifteen_minute_profile.json",
+      "zone_fifteen_minute_tide.json"
+    ]
+  },
+  "london": {
+    "nativeMinutes": 15,
+    "files": [
+      "city_hourly_profile.json",
+      "zone_hourly_tide.json",
+      "city_fifteen_minute_profile.json",
+      "zone_fifteen_minute_tide.json"
+    ]
+  },
+  "seoul": {
+    "nativeMinutes": 60,
+    "files": [
+      "city_hourly_profile.json",
+      "zone_hourly_tide.json"
+    ]
+  }
+}

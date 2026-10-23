@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17231e">
+  <meta name="description" content="用交互式线网图、潮汐圆图与24小时节律，阅读上海、深圳、杭州、伦敦和首尔的地铁日常。">
+  <title>Wiring the City · 城市脉络</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./data/cities.js" defer></script>
+  <script src="./data/diagrams.js" defer></script>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳至正文</a>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="Wiring the City，返回顶部">
+      <span class="wordmark-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      <span>Wiring the City<span class="wordmark-dot">.</span></span>
+    </a>
+    <nav class="header-nav" aria-label="主要导航">
+      <a href="#overview">城市里程</a>
+      <a href="#explore">城市节律</a>
+      <a href="#guide">阅读方法</a>
+    </nav>
+    <a class="portfolio-return" href="../work/wiring-the-city/" aria-label="返回 Fan Ju 的项目介绍">← Fan Ju / 项目</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Wiring<br>the City<span class="title-colon">:</span></h1>
+        <div class="hero-description">
+          <p class="hero-cn">城市脉络<br>地铁线网与城市节律</p>
+          <p class="hero-intro">线网勾勒城市的形状，进出站记录描出一天的呼吸。沿着五座城市的线路和时刻，阅读地铁如何连接空间与日常。</p>
+          <a class="hero-link" href="#overview">从城市里程开始 <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="overview-section section-shell" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading"><h2 id="overview-title">城市里程</h2><p>五城地铁线网里程</p></div>
+      <div class="overview-grid">
+        <div class="mileage-visual" id="mileage-list" aria-label="五座城市线路里程"></div>
+        <div class="overview-note">
+          <span class="note-rule"></span>
+          <p>线网从城市中心延展，也把日常行程编织在一起。</p>
+          <p class="subtle">此处里程采用原海报的展示口径。各城统计年份与纳入线路范围不同，用于阅读线网形态，不把里程与客流总量直接对应。</p>
+          <a href="#explore">查看各城节律 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stamp-section section-shell" id="stamps" aria-labelledby="stamp-title">
+      <div class="stamp-gallery-wrap">
+        <div class="stamp-gallery-heading"><h2 id="stamp-title">五城邮票</h2><p>取自原海报的线路图形 · 选择城市继续阅读</p></div>
+        <div class="stamp-gallery" id="city-picker" role="group" aria-label="选择城市"></div>
+      </div>
+    </section>
+
+    <section class="explore-section section-shell" id="explore" aria-labelledby="explore-title">
+      <div class="section-heading"><h2 id="explore-title">城市节律</h2><p>选择城市，查看线路结构与客流变化</p></div>
+      <div class="explore-legends" aria-label="图表图例">
+        <figure class="explore-legend"><div class="explore-legend-scroll"><img src="./assets/legends/radial-legend.svg" alt="线路色带、里程及公里量尺图例" width="3368" height="1000" loading="lazy"></div></figure>
+        <figure class="explore-legend"><div class="explore-legend-scroll"><img src="./assets/legends/tide-legend.svg" alt="潮汐波纹、客流蓝柱及参考值图例" width="3368" height="1040" loading="lazy"></div></figure>
+      </div>
+      <div class="city-dossier" id="city-dossier" style="--city-color:#ef70a1">
+        <div class="explore-controls">
+          <div class="city-tabs" id="city-tabs" role="group" aria-label="选择城市"></div>
+        </div>
+        <div class="dossier-heading">
+          <div><h3 id="dossier-city">上海 <span>Shanghai / SHA</span></h3><p id="dossier-sample"></p></div>
+          <div class="dossier-meta"><span id="dossier-lines"></span><span id="dossier-mileage"></span></div>
+        </div>
+        <div class="diagram-grid">
+          <figure class="diagram-panel network-panel">
+            <figcaption><strong>线路放射图</strong><span>悬停色臂或线路名称查看里程；点击空白处取消选择</span></figcaption>
+            <div class="diagram-scroll" id="radial-graphic"><img id="radial-image" src="./assets/radial/metroflow-shanghai-radial-labeled-2026-10-11.svg" alt="上海地铁线路放射图" width="880" height="510" loading="lazy"></div>
+            <div class="network-detail" id="network-detail" aria-live="off">将鼠标移到色臂或线路名称，查看对应线路。</div>
+          </figure>
+          <figure class="diagram-panel tide-panel">
+            <figcaption><div class="tide-heading-row"><strong>潮汐客流图</strong><div class="day-picker" id="day-picker" role="group" aria-label="选择日期类型"></div></div><span>悬停或轻触查看时段 · 再次点击解除锁定</span></figcaption>
+            <div class="diagram-scroll" id="tide-graphic"><img id="tide-image" src="./assets/tide/shanghai-workday-tide-circle-web.svg" alt="上海工作日潮汐客流圆图" width="880" height="880" loading="lazy"></div>
+            <div class="tide-detail" id="tide-detail" aria-live="off"></div>
+            <div class="diagram-foot"><a id="tide-full-link" href="./assets/tide/shanghai-workday-tide-circle-web.svg" target="_blank" rel="noopener">打开原图 ↗</a></div>
+            <p class="diagram-scale">蓝柱零点与内层 −8 万参考弧共线；蓝柱 20 万与外层 +8 万参考弧共线。</p>
+          </figure>
+        </div>
+        <div class="rhythm-section" aria-labelledby="rhythm-title">
+          <div class="rhythm-heading"><div><h4 id="rhythm-title">24 小时节律</h4><p>逐小时闸机进出站活动量 · 悬停预览，点击锁定</p></div><span id="rhythm-scope">工作日</span></div>
+          <div class="rhythm-scroll"><div class="hour-chart" id="hour-chart" role="group" aria-label="24 小时活动量图"></div><div class="hour-axis" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div></div>
+          <div class="rhythm-detail"><div class="hour-readout"><strong id="selected-hour">—</strong><span id="selected-activity">—</span></div><p id="selected-direction">选择柱条查看该时段。</p></div>
+          <p class="rhythm-note">灰色斜纹表示数据未覆盖的时段，不代表零客流。柱高以当前城市、当前日期类型的峰值归一化。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section section-shell" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading"><h2 id="guide-title">读懂这张图</h2><p>线路形态与日内潮汐</p></div>
+      <div class="guide-explainer">
+        <p>每条彩色放射带代表一条地铁线路；色带越长、末端越宽，运营里程越长。</p>
+        <p>内外两层波纹向圆心内凹，表示客流呈向内环汇聚的趋势；向外凸起则表示相反趋势。起伏越大，潮汐越明显。</p>
+      </div>
+    </section>
+
+  </main>
+  <footer class="site-footer"><span>Wiring the City · 城市脉络</span><span>Metro Networks and Urban Rhythms</span><a href="../">Fan Ju · 个人网站 ↗</a></footer>
+  <div class="error-banner" id="error-banner" role="alert" hidden>数据加载失败。请确认 data/cities.js 与网页文件一起保存，再刷新页面。</div>
+</body>
+</html>
