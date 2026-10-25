@@ -5,12 +5,11 @@ subtitle: 让事实之间的联系，变得清晰。
 summary: 围绕法律事实澄清的多智能体系统探索，关注提问、信息组织与事实图谱之间的关系。
 category: AI SYSTEM / RESEARCH
 tags: [多智能体, 知识图谱, 产品思考]
-role: 待补充
 domain: Legal AI / Agent
 status: 待确认
 placeholder: true
 featured: true
-order: 1
+order: 3
 art: graph
 ---
 
@@ -32,7 +31,7 @@ art: graph
 
 ## 技术实现
 
-待补充系统架构、Agent 职责、数据结构、关键实现与个人贡献。封面中的节点网络为视觉示意，不是项目真实架构图。
+待补充系统架构、Agent 职责与数据结构。封面中的节点网络为视觉示意，不是项目真实架构图。
 
 ## 成果与反思
 

@@ -18,9 +18,9 @@ useHead({
     <header class="page-heading">
       <p class="eyebrow section-index">项目</p>
       <h1>项目作品</h1>
-      <p>点击项目了解背景与实现过程。Wiring the City 可直接进入交互演示。</p>
+      <p>研究与交互作品的背景、方法和实现过程。Wiring the City 可直接进入交互演示。</p>
       <div class="page-heading-meta">
-        <span class="eyebrow">COURTGRAPH · WIRING THE CITY · IELTS AGENT</span
+        <span class="eyebrow">JURISBENCHOMNI · WIRING THE CITY · COURTGRAPH · IELTS AGENT</span
         ><span class="pending-small">部分项目案例内容待补充</span>
       </div>
     </header>

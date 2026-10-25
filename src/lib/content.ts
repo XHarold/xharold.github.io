@@ -8,16 +8,16 @@ export interface ContentEntry {
   category: string;
   tags: string[];
   status?: string;
-  role?: string;
   domain?: string;
   placeholder: boolean;
   featured?: boolean;
   order: number;
-  art: "graph" | "metro" | "learning";
+  art: "graph" | "metro" | "learning" | "benchmark";
   date?: string;
   draft?: boolean;
   cover?: string;
   demo?: string;
+  paperStatus?: string;
   links?: { label: string; url: string }[];
   html: string;
 }

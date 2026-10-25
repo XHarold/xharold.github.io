@@ -20,6 +20,7 @@ test("all public routes have pre-rendered HTML with useful content", () => {
     "work/index.html",
     "lab/index.html",
     "work/courtgraph/index.html",
+    "work/jurisbenchomni/index.html",
     "work/wiring-the-city/index.html",
     "work/city-pulse/index.html",
     "wiring-the-city/index.html",
@@ -70,7 +71,8 @@ test("home introduces the person and education before projects", () => {
   assert.match(home, /<span>About<\/span><small>个人经历<\/small>/);
   assert.match(home, /<span>Project<\/span><small>项目<\/small>/);
   assert.match(home, /<span>Contact<\/span><small>联系<\/small>/);
-  assert.match(home, /mailto:haaarold@foxmail\.com/);
+  assert.match(home, /class="contact-email">haaarold@foxmail\.com<\/span>/);
+  assert.doesNotMatch(home, /mailto:/);
   assert.equal((home.match(/class="[^"]*brand"[^>]*>Fan Ju<\/a>/g) || []).length, 2);
   assert.match(home, new RegExp(`© ${new Date().getFullYear()} Fan Ju`));
   assert.doesNotMatch(home, /查看完整经历|下载简历|GitHub|resume\.pdf/);
@@ -118,6 +120,21 @@ test("Wiring the City replaces City Pulse and its interactive assets are publish
   assert.match(legacy, /url=\/work\/wiring-the-city\//);
   for (const asset of ["styles.css", "main.js", "data/cities.js", "data/diagrams.js", "assets/stamps/london-stamp.svg"]) {
     assert.ok(existsSync(`dist/wiring-the-city/${asset}`), `missing visualization asset: ${asset}`);
+  }
+});
+
+test("JurisBenchOmni links to the verified repository and the paper remains a status", () => {
+  const home = readFileSync("dist/index.html", "utf8");
+  const work = readFileSync("dist/work/index.html", "utf8");
+  const detail = readFileSync("dist/work/jurisbenchomni/index.html", "utf8");
+  assert.match(home, /JurisBenchOmni/);
+  assert.match(work, /JurisBenchOmni/);
+  assert.match(detail, /https:\/\/github\.com\/jurisbenchomni\/jurisbenchomni/);
+  assert.match(detail, /论文在投 · 暂无公开论文链接/);
+  assert.doesNotMatch(detail, /\.pdf/);
+  for (const slug of ["jurisbenchomni", "wiring-the-city", "courtgraph", "ielts-agent"]) {
+    const html = readFileSync(`dist/work/${slug}/index.html`, "utf8");
+    assert.doesNotMatch(html, /ROLE \/ 我的角色|个人贡献/);
   }
 });
 

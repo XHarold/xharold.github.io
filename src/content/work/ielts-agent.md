@@ -5,12 +5,11 @@ subtitle: 让每一次练习，都更有方向。
 summary: 面向语言学习的 AI 产品探索，思考练习、反馈与持续学习之间的体验连接。
 category: AI PRODUCT / LEARNING
 tags: [AI 产品, 学习体验, 产品设计]
-role: 待补充
 domain: Education / AI Agent
 status: 待确认
 placeholder: true
 featured: true
-order: 3
+order: 4
 art: learning
 ---
 
@@ -24,7 +23,7 @@ art: learning
 
 ## 技术实现
 
-待补充产品架构、模型使用方式、交互实现与个人贡献。封面中的对话界面为概念示意，不代表已上线产品。
+待补充产品架构、模型使用方式与交互实现。封面中的对话界面为概念示意，不代表已上线产品。
 
 ## 成果与反思
 

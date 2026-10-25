@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { assetUrl } from "../lib/urls";
-defineProps<{ kind: "graph" | "metro" | "learning"; compact?: boolean }>();
+defineProps<{ kind: "graph" | "metro" | "learning" | "benchmark"; compact?: boolean }>();
 const nodes = [
   [360, 208],
   [238, 126],
@@ -76,6 +76,27 @@ const edges = [
       </div>
       <div class="art-bottomline">
         <span>FIVE CITIES / ONE VISUAL STORY</span><span>交互作品 ↗</span>
+      </div>
+    </template>
+    <template v-else-if="kind === 'benchmark'">
+      <div class="art-topline">
+        <span>JURISBENCHOMNI / RESEARCH</span><span>FIG. 004</span>
+      </div>
+      <div class="benchmark-cover">
+        <div class="benchmark-cover-title">
+          <span>LEGAL · OMNI-MODAL EVALUATION</span>
+          <strong>JurisBench<br />Omni<span>.</span></strong>
+          <small>从庭审影像到司法文书</small>
+        </div>
+        <div class="benchmark-cover-matrix" aria-hidden="true">
+          <div><b>01</b><span>角色归属</span></div>
+          <div><b>02</b><span>互动理解</span></div>
+          <div><b>03</b><span>证据识别</span></div>
+          <div><b>04</b><span>庭审与文书关联</span></div>
+        </div>
+      </div>
+      <div class="art-bottomline">
+        <span>HEARING → JUDGMENT</span><span>研究概览图形 ↗</span>
       </div>
     </template>
     <template v-else>

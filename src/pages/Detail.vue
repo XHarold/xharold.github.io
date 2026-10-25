@@ -41,13 +41,9 @@ useHead({
       <p class="detail-subtitle">{{ entry.subtitle || entry.summary }}</p>
       <div v-if="entry.placeholder" class="content-notice">
         <span aria-hidden="true">◌</span>
-        案例框架预览：文案与封面为方向示意，个人贡献、项目状态与成果待补充。
+        案例框架预览：文案与封面为方向示意，项目状态与成果待补充。
       </div>
       <dl v-if="kind === 'work'" class="project-meta">
-        <div>
-          <dt>ROLE / 我的角色</dt>
-          <dd>{{ entry.role || "待补充" }}</dd>
-        </div>
         <div>
           <dt>DOMAIN / 项目领域</dt>
           <dd>{{ entry.domain }}</dd>
@@ -57,6 +53,18 @@ useHead({
           <dd>{{ entry.status || "待确认" }}</dd>
         </div>
       </dl>
+      <div v-if="entry.links?.length || entry.paperStatus" class="detail-links detail-heading-links">
+        <a
+          v-for="link in entry.links"
+          :key="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button-primary"
+          >{{ link.label }} ↗</a
+        >
+        <span v-if="entry.paperStatus" class="paper-status">{{ entry.paperStatus }}</span>
+      </div>
       <a v-if="entry.demo" :href="assetUrl(entry.demo)" class="button-primary detail-demo-cta"
         >进入交互可视化 ↗</a
       >

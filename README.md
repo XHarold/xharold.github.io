@@ -1,6 +1,6 @@
 # 鞠帆｜个人网站
 
-首页将姓名、教育背景、实习经历与个人照片放在同一区域，项目案例供访客继续阅读。个人资料依据网站所有者提供的简历整理；Wiring the City 已接入可交互作品，其他项目案例仍保留待补充内容。使用 Vue 3 + Vite + TypeScript + Tailwind CSS + vite-ssg，可部署到 GitHub Pages。
+首页将姓名、教育背景、实习经历与个人照片放在同一区域，项目案例供访客继续阅读。个人资料依据网站所有者提供的简历整理；JurisBenchOmni 和 Wiring the City 有实际研究或互动作品内容，CourtGraph 与 IELTS Agent 仍保留待补充内容。使用 Vue 3 + Vite + TypeScript + Tailwind CSS + vite-ssg，可部署到 GitHub Pages。
 
 ## 本地运行
 
@@ -24,7 +24,7 @@ npm run preview
 ## 分区
 
 - Home `/`：左侧姓名、教育背景与实习经历，右侧个人照片 → 两个项目入口 → 实验室入口 → 邮箱；有已发布笔记时才显示笔记区。顶部 About 和 Contact 跳转到首页对应区域。
-- Work `/work/`：CourtGraph、Wiring the City、IELTS Agent；详情在 `/work/<slug>/`。Wiring the City 的独立互动页位于 `/wiring-the-city/`，原 `/work/city-pulse/` 会跳转到新案例。
+- Work `/work/`：JurisBenchOmni、Wiring the City、CourtGraph、IELTS Agent；详情在 `/work/<slug>/`。Wiring the City 的独立互动页位于 `/wiring-the-city/`，原 `/work/city-pulse/` 会跳转到新案例。
 - Lab `/lab/`：可以拖拽、触摸、用方向键或按钮移动节点的 Canvas 实验。
 - Notes：有已发布笔记时在首页列出，正文为 `/notes/<slug>/`，不增加一级导航。
 
@@ -40,7 +40,7 @@ npm run preview
 - `portrait`：当前使用 `/images/portrait.jpg`，文件存放在 `public/` 对应位置。
 - `isPlaceholder`：项目内容尚待确认时保持 `true`，使预览页不被搜索引擎收录。
 
-空邮箱不会生成按钮。网站不提供简历下载，也不展示其他个人联系方式。项目仍含占位内容，因此保留 `noindex` 和“资料校对中”标识。
+邮箱以纯文本显示，不生成邮件链接。网站不提供简历下载，也不展示其他个人联系方式。项目仍含占位内容，因此保留 `noindex` 和“资料校对中”标识。
 
 ## 更新项目
 
@@ -54,7 +54,6 @@ subtitle: 一句话介绍
 summary: 用于列表与页面描述的摘要
 category: AI / PRODUCT
 tags: [产品设计, 开发]
-role: 实际承担的角色
 domain: 项目领域
 status: 开发中
 placeholder: false
@@ -68,9 +67,11 @@ links:
 ---
 ```
 
-`slug` 使用英文小写与连字符，并保持唯一。`art` 支持 `graph`、`metro`、`learning`；没有真实封面时显示项目图形或带“概念示意”标注的原生矢量图。提供 `cover` 后使用真实截图。`demo: /wiring-the-city/` 可指定站内互动页；`links` 是外部链接，必须使用 HTTP(S)。首页按 `order` 显示前两个 `featured: true` 的项目。
+`slug` 使用英文小写与连字符，并保持唯一。`art` 支持 `graph`、`metro`、`learning`、`benchmark`；没有真实封面时显示项目图形或带“概念示意”标注的原生矢量图。提供 `cover` 后使用真实截图。`demo: /wiring-the-city/` 可指定站内互动页；`links` 是外部链接，必须使用 HTTP(S)。`paperStatus` 可显示论文状态，不生成链接。首页按 `order` 显示前两个 `featured: true` 的项目。
 
-建议正文依次填写：问题与目标、方案与产品取舍、技术实现、成果与反思。CourtGraph 与 IELTS Agent 的案例内容仍待补充；Wiring the City 的介绍依据已发布的演示整理，个人贡献等未确认信息明确标注待补充。
+建议正文依次填写：问题与目标、方案与产品取舍、技术实现、成果与反思。CourtGraph 与 IELTS Agent 的案例内容仍待补充；Wiring the City 的介绍依据已发布的演示整理。
+
+JurisBenchOmni 的说明依据本地 ICLR 2027 在投稿整理。论文仍在匿名评审，网站只显示“论文在投”，不发布本地 PDF。GitHub 链接指向公开的早期评测仓库；其任务版本与当前在投稿不同，不混用统计结果。
 
 ### 更新 Wiring the City 演示
 
@@ -120,7 +121,7 @@ Markdown 不执行原始 HTML。项目与文章内容均从本地文件构建，
 ## 发布前内容清单
 
 - [x] 姓名、学校与专业、就读时间、实习、个人照片。
-- [ ] CourtGraph 与 IELTS Agent 的真实状态、个人贡献、方案、截图、可验证结果与链接；补充 Wiring the City 的个人贡献与设计过程。
+- [ ] CourtGraph 与 IELTS Agent 的真实状态、方案、截图、可验证结果与链接；补充 Wiring the City 的数据来源与设计过程。
 - [x] 邮箱；未公开其他联系方式或简历文件。
 - [ ] 删除或替换其余项目的占位说明，不把概念封面作为真实产品截图。
 - [ ] 完成后将 `isPlaceholder` 改为 `false`，检查元信息与分享图。
