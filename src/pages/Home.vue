@@ -80,7 +80,6 @@ useHead({
           >查看全部项目 <span aria-hidden="true">↗</span></RouterLink
         >
       </div>
-      <p class="section-intro">这里先展示两个项目。点击卡片可查看背景、我的工作和实现过程。</p>
       <div class="work-grid home-work-grid">
         <ProjectCard
           v-for="project in selectedProjects"
@@ -88,17 +87,6 @@ useHead({
           :project="project"
         />
       </div>
-    </section>
-
-    <section class="more-section shell" aria-labelledby="more-title">
-      <div>
-        <p class="eyebrow section-index">更多内容</p>
-        <h2 id="more-title">项目之外</h2>
-        <p>在实验室可以体验一个可拖动的节点交互练习。</p>
-      </div>
-      <RouterLink to="/lab/" class="text-link"
-        >查看交互实验 <span aria-hidden="true">↗</span></RouterLink
-      >
     </section>
 
     <section v-if="notes.length" class="section shell notes-section" aria-labelledby="notes-title">

@@ -48,7 +48,6 @@ test("home introduces the person and education before projects", () => {
     "education-title",
     "internship-title",
     "work-title",
-    "more-title",
     ...(home.includes('id="notes-title"') ? ["notes-title"] : []),
     "contact-title",
   ];
@@ -67,6 +66,8 @@ test("home introduces the person and education before projects", () => {
   assert.match(home, /同济大学/);
   assert.match(home, /北京邮电大学/);
   assert.match(home, /images\/portrait\.jpg/);
+  assert.doesNotMatch(home, /这里先展示两个项目/);
+  assert.doesNotMatch(home, /项目之外|查看交互实验/);
   assert.doesNotMatch(home, /同济大学设计学硕士在读｜人工智能与数据设计|<figcaption/);
   assert.match(home, /<span>About<\/span><small>个人经历<\/small>/);
   assert.match(home, /<span>Project<\/span><small>项目<\/small>/);
@@ -140,12 +141,20 @@ test("JurisBenchOmni links to the verified repository and the paper remains a st
 
 test("review-stage content is private to search engines and project drafts remain labeled", () => {
   const home = readFileSync("dist/index.html", "utf8");
+  const work = readFileSync("dist/work/index.html", "utf8");
+  for (const slug of ["courtgraph", "ielts-agent"]) {
+    assert.match(readFileSync(`dist/work/${slug}/index.html`, "utf8"), /<strong>待完善<\/strong>/);
+  }
+  assert.equal((work.match(/class="draft-tag">待完善<\/span>/g) || []).length, 2);
+  for (const slug of ["jurisbenchomni", "wiring-the-city"]) {
+    assert.doesNotMatch(readFileSync(`dist/work/${slug}/index.html`, "utf8"), /<strong>待完善<\/strong>/);
+  }
   if (!home.includes("资料校对中")) return;
   assert.match(home, /name="robots"[^>]+content="noindex, nofollow"/);
   assert.match(readFileSync("dist/robots.txt", "utf8"), /Disallow: \//);
   assert.match(
     readFileSync("dist/work/courtgraph/index.html", "utf8"),
-    /案例框架预览/,
+    /<strong>待完善<\/strong>/,
   );
   assert.match(home, /北京通用人工智能研究院/);
 });

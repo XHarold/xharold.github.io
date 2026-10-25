@@ -35,8 +35,8 @@ defineProps<{ project: ContentEntry; featured?: boolean }>();
       <span class="project-number">0{{ project.order }}</span>
     </div>
     <div class="project-tags">
-      <span v-for="tag in project.tags" :key="tag">{{ tag }}</span
-      ><span v-if="project.placeholder" class="draft-tag">案例待补充</span>
+      <span v-if="project.placeholder" class="draft-tag">待完善</span>
+      <span v-for="tag in project.tags" :key="tag">{{ tag }}</span>
     </div>
   </article>
 </template>

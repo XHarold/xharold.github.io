@@ -40,8 +40,8 @@ useHead({
       <h1>{{ entry.title }}</h1>
       <p class="detail-subtitle">{{ entry.subtitle || entry.summary }}</p>
       <div v-if="entry.placeholder" class="content-notice">
-        <span aria-hidden="true">◌</span>
-        案例框架预览：文案与封面为方向示意，项目状态与成果待补充。
+        <strong>待完善</strong>
+        <span>文案与封面为方向示意，项目状态与成果待补充。</span>
       </div>
       <dl v-if="kind === 'work'" class="project-meta">
         <div>
